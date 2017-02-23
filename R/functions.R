@@ -76,7 +76,7 @@ run_look <- function(look_id = NULL, format = "json", limit = NULL){
 
 	# extract and prepare query results
 	json_response <- jsonlite::fromJSON(response)
-	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
+	return(json_response)
 	}
 
 }
@@ -120,7 +120,7 @@ run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL,
 	response <- J(queryApi, "runInlineQuery", "json", query)
 
 	# extract and prepare query results
-	json_response <- RJSONIO::fromJSON(response)
-	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
+	json_response <- jsonlite::fromJSON(response)
+	return(json_response)
 	}
 }
