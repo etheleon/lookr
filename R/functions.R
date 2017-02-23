@@ -1,6 +1,6 @@
 # preliminaries #
 require("rJava")
-require("RJSONIO")
+require("jsonlite")
 
 # instantiate the client and authenticate
 looker_setup <- function(id = NULL, secret = NULL, api_path = NULL){
@@ -75,7 +75,7 @@ run_look <- function(look_id = NULL, format = "json", limit = NULL){
 	response <- J(lookApi, "runLook", .jnew("java/lang/Long", .jlong(look_id)), format)
 
 	# extract and prepare query results
-	json_response <- RJSONIO::fromJSON(response, nullValue = "")
+	json_response <- jsonlite::fromJSON(response)
 	return(data.frame(do.call("rbind", lapply(json_response, unlist))))
 	}
 
