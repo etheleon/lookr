@@ -68,7 +68,7 @@ run_look <- function(look_id = NULL, format = "json", limit){
 	# build up Look
 	look <- .jnew("io/swagger/client/model/Look")
 	if(hasArg(limit)){
-	  .jcall(look, "V", "setLimit", limit)
+	  J(look, "setLimit", limit)
 	}
 
 	# run look
@@ -107,7 +107,7 @@ run_inline_query <- function(model, view, fields, filters = NULL, pivots = NULL,
 	.jcall(query, "V", "setModel", model)
 	.jcall(query, "V", "setView", view)
 	if(hasArg(limit)){
-	  .jcall(query, "V", "setLimit", limit)
+	  J(query, "setLimit", limit)
 	}
 	fields_array_list <- J("java/util/Arrays", method = "asList", .jcastToArray(fields))
 	J(query, "setFields", fields_array_list)
